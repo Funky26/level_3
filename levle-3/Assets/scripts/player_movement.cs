@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player_movement : MonoBehaviour
 {
@@ -28,6 +29,14 @@ public class player_movement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = Vector3.right * dir_speed;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "enemy")
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }
