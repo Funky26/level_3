@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
+  - finishLine
+  - coin
   layers:
   - Default
   - TransparentFX

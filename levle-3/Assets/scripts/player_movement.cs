@@ -31,13 +31,16 @@ public class player_movement : MonoBehaviour
             rb.velocity = Vector3.right * dir_speed;
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "enemy")
+        if (collision.gameObject.tag == "enemy")
         {
             SceneManager.LoadScene("SampleScene");
         }
+
+        if (collision.gameObject.tag == "finishLine")
+        {
+            SceneManager.LoadScene("lvl02");
+        }
     }
 }
-
