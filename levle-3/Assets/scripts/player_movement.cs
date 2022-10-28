@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,16 +10,22 @@ public class player_movement : MonoBehaviour
     public float speed = 5.0f;
     public float dir_speed = 15.0f;
 
+    private int coins;
+    public TextMeshProUGUI scoreText;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        coins = 0;
+        scoreText.text = "" + coins;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         rb.velocity = Vector3.forward * speed;
 
@@ -35,12 +42,20 @@ public class player_movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy")
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex );
         }
 
         if (collision.gameObject.tag == "finishLine")
         {
-            SceneManager.LoadScene("lvl02");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        if (collision.gameObject.tag == "coin")
+        {
+            Destroy(collision.gameObject);
+            coins += 1;
+            scoreText.text = "" + coins;
+
         }
     }
 }
